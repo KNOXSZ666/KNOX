@@ -3,7 +3,7 @@
 // ======================================================
 const MOD_DATA = [
     { id: 1, name: "Câu Cá Vạn Cân", price: 0, description: "Tăng tỷ lệ rơi vàng và vật phẩm hiếm.", image: "assets/mod_ca_van_can.jpg" },
-    { id: 2, name: "Mod Skill Mạnh Mẽ", price: 75000, description: "Tăng cấp độ kỹ năng tối đa và hiệu quả tấn công.", image: "assets/mod_skill.jpg" },
+    { id: 2, name: "Mod Skill Mạnh Mẽ", price: 10000, description: "Tăng cấp độ kỹ năng tối đa và hiệu quả tấn công.", image: "assets/mod_skill.jpg" },
     { id: 3, name: "Mod Cấp Độ", price: 30000, description: "Tăng cấp trong game.", image: "assets/mod_lv.jpg" },
     { id: 4, name: "Mod Item VIP", price: 20000, description: "Tự động nhận bộ trang bị cao cấp nhất.", image: "assets/mod_item.jpg" },
     { id: 5, name: "Mod Pet Hỗ Trợ", price: 20000, description: "Thuê pet mạnh giúp farm và chiến đấu.", image: "assets/mod_pet.jpg" },
