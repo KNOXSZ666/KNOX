@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KNOX - Trung Tâm Cung Cấp Mod Game Uy Tín</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Sử dụng Google Fonts cho sự chuyên nghiệp -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- 1. HEADER & NAVIGATION -->
+    <header class="main-header">
+        <div class="container header-content">
+            <div class="logo">
+                <img src="assets/logo_knox.png" alt="KNOX Logo">
+                <h1>KNOX</h1>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#products">Sản Phẩm</a></li>
+                    <li><a href="#payment-methods">Thanh Toán</a></li>
+                    <li><a href="#policies">Chính Sách</a></li>
+                    <li><a href="#contact">Liên Hệ</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- 2. HERO SECTION -->
+        <section class="hero-section">
+            <div class="container">
+                <h2>CHINH PHỤC GAME CÙNG KNOX - TỐC ĐỘ VÀ CHẤT LƯỢNG</h2>
+                <p>Tất cả các gói Mod game từ Cá Vạn Cân đến Kim Cương, giá tốt nhất thị trường.</p>
+                <a href="#products" class="btn btn-primary">Xem Gói Mod</a>
+            </div>
+        </section>
+
+        <!-- 3. PRODUCT CATALOGUE (MOD LIST) -->
+        <section id="products" class="product-section container">
+            <h2>🛒 DANH MỤC SẢN PHẨM</h2>
+            <div class="product-grid" id="mod-container">
+                <!-- Các Mod sẽ được JS inject vào đây -->
+            </div>
+            <div class="call-to-action-bar">
+                <button id="btn-cart" class="btn btn-large">THÊM VÀO GIỎ HÀNG</button>
+                <div id="cart-summary">
+                    <span>🛒 Giỏ hàng: 0 sản phẩm | Tổng: 0 VNĐ</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. PAYMENT CENTER -->
+        <section id="payment-methods" class="payment-section">
+            <div class="container">
+                <h2>💳 CÁC PHƯƠNG THỨC THANH TOÁN</h2>
+
+                <!-- Tab Navigation -->
+                <div class="tab-navigation">
+                    <button class="tab-btn active" onclick="openTab(event, 'bank')">🏦 Chuyển Khoản Bank</button>
+                    <button class="tab-btn" onclick="openTab(event, 'card')">💳 Thanh Toán Thẻ</button>
+                    <button class="tab-btn" onclick="openTab(event, 'card_scratch')">🎟 Thẻ Cào</button>
+                    <button class="tab-btn" onclick="openTab(event, 'gcoin')">💎 Gcoin / Ví Điện Tử</button>
+                </div>
+
+                <!-- Tab Content -->
+                <div id="bank" class="tab-content active">
+                    <h3>Bank Transfer (Chuyển Khoản Ngân Hàng)</h3>
+                    <div class="payment-details">
+                        <p><strong>Tên TK:</strong> KNOX Gaming</p>
+                        <p><strong>Số TK:</strong> 001234567890</p>
+                        <p><strong>Ngân hàng:</strong> Vietcombank</p>
+                        <p><strong>Hoặc Quét QR:</strong> <img src="assets/qr_bank.png" alt="QR Code Bank" class="qr-image"></p>
+                    </div>
+                </div>
+
+                <div id="card" class="tab-content">
+                    <h3>Online Card Payment</h3>
+                    <form id="form-card-payment" class="payment-form">
+                        <input type="text" id="card-number" placeholder="Số thẻ (16 số)" required>
+                        <input type="text" id="card-expiry" placeholder="MM/YY" required>
+                        <input type="number" id="card-cvv" placeholder="CVV (3 số)" required>
+                        <button type="submit" class="btn btn-submit">Xác Nhận Thanh Toán Thẻ</button>
+                    </form>
+                </div>
+
+                <div id="card_scratch" class="tab-content">
+                    <h3>Thẻ Cào</h3>
+                    <form id="form-scratch-payment" class="payment-form">
+                        <input type="text" id="scratch-code" placeholder="Mã thẻ cào" required>
+                        <input type="text" id="scratch-provider" placeholder="Nhà cung cấp" required>
+                        <button type="submit" class="btn btn-submit">Gửi Yêu Cầu</button>
+                    </form>
+                </div>
+
+                <div id="gcoin" class="tab-content">
+                    <h3>Ví Điện Tử & Gcoin</h3>
+                    <div class="payment-details">
+                        <p>Chọn ví của bạn:</p>
+                        <div class="coin-options">
+                            <button class="coin-btn" data-coin="zalo">ZaloPay</button>
+                            <button class="coin-btn" data-coin="vnpay">VNPay</button>
+                            <button class="coin-btn" data-coin="gcoin">KNOX Coin (Gcoin)</button>
+                        </div>
+                        <p class="note">Hoặc Liên hệ Hotline để được hỗ trợ thanh toán thủ công.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. POLICIES & TRUST -->
+        <section id="policies" class="policies-section">
+            <div class="container">
+                <h2>🛡️ CAM KẾT CHẤT LƯỢNG KNOX</h2>
+                <div class="policy-cards">
+                    <div class="card">
+                        <h4>🔥 Bảo Hành Tức Thì</h4>
+                        <p>Trong trường hợp lỗi game, chúng tôi cam kết đổi trả hoặc hoàn tiền 100% trong vòng 24 giờ.</p>
+                    </div>
+                    <div class="card">
+                        <h4>💎 Đền Bù Ban Acc</h4>
+                        <p>Miễn phí tặng kèm gói quà nhỏ khi khách hàng đăng ký tài khoản mới.</p>
+                    </div>
+                    <div class="card">
+                        <h4>🔒 Bảo Mật Tuyệt Đối</h4>
+                        <p>Mọi giao dịch và thông tin cá nhân của bạn được bảo mật bằng chuẩn mã hóa cao nhất.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. CONTACT SECTION -->
+        <section id="contact" class="contact-section">
+            <div class="container">
+                <h2>📞 LIÊN HỆ HỖ TRỢ</h2>
+                <div class="contact-grid">
+                    <div class="contact-item">
+                        <i class="icon-zalo"></i>
+                        <p>Zalo Chính Thức: 09xx.xxx.xxxx</p>
+                    </div>
+                    <div class="contact-item">
+                        <i class="icon-phone"></i>
+                        <p>Hotline Hỗ Trợ: 09xx.xxx.xxxx</p>
+                    </div>
+                    <div class="contact-item">
+                        <i class="icon-email"></i>
+                        <p>Email: support@knoxgaming.com</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="main-footer">
+        <div class="container">
+            <p>&copy; 2024 KNOX Gaming. All rights reserved. | <a href="#">Điều khoản</a> | <a href="#">Chính sách bảo mật</a></p>
+        </div>
+    </footer>
+
+    <!-- MODAL CHO LOGIN/REGISTER -->
+    <div id="authModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal()">&times;</span>
+            <h3 id="modal-title">Đăng Nhập Tài Khoản</h3>
+            <form id="auth-form">
+                <input type="text" id="auth-username" placeholder="Tên đăng nhập / SĐT" required>
+                <input type="password" id="auth-password" placeholder="Mật khẩu" required>
+                <button type="submit" id="btn-auth" class="btn btn-submit">Đăng Nhập</button>
+                <button type="button" id="btn-toggle-auth" class="btn btn-secondary">Đăng Ký</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
