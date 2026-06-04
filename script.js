@@ -1,17 +1,17 @@
 // ======================================================
-// 📚 1. DỮ LIỆU SẢN PHẨM (Database Mockup)
+//  1. DỮ LIỆU SẢN PHẨM (Database Mockup)
 // ======================================================
 const MOD_DATA = [
-    { id: 1, name: "Câu Cá Vạn Cân", price: 0, description: "Tăng tỷ lệ rơi vàng và vật phẩm hiếm.", image: "assets/mod_ca_van_can.jpg" },
+    { id: 1, name: "Cá Vạn Cân", price: 0, description: "Tăng tỷ lệ rơi vàng và vật phẩm hiếm.", image: "assets/mod_ca_van_can.jpg" },
     { id: 2, name: "Mod Skill Mạnh Mẽ", price: 10000, description: "Tăng cấp độ kỹ năng tối đa và hiệu quả tấn công.", image: "assets/mod_skill.jpg" },
-    { id: 3, name: "Mod Cấp Độ", price: 30000, description: "Tăng cấp trong game.", image: "assets/mod_lv.jpg" },
+    { id: 3, name: "Mod Tăng Cấp Độ", price: 30000, description: "Tăng tốc độ lên cấp trong game.", image: "assets/mod_lv.jpg" },
     { id: 4, name: "Mod Item VIP", price: 20000, description: "Tự động nhận bộ trang bị cao cấp nhất.", image: "assets/mod_item.jpg" },
-    { id: 5, name: "Mod Pet Hỗ Trợ", price: 20000, description: "Thuê pet mạnh giúp farm và chiến đấu.", image: "assets/mod_pet.jpg" },
-    { id: 6, name: "Mod Kim Cương Tím", price: 30000, description: "Gói nâng cấp toàn diện, bao gồm mọi thứ.", image: "assets/mod_kim_duong.jpg" },
+    { id: 5, name: "Mod Pet Hỗ Trợ", price: 30000, description: "Thuê pet mạnh giúp farm và chiến đấu.", image: "assets/mod_pet.jpg" },
+    { id: 6, name: "Mod Kim Cương", price: 30000, description: "Gói nâng cấp toàn diện, bao gồm mọi thứ.", image: "assets/mod_kim_duong.jpg" },
 ];
 
 // ======================================================
-// 🛒 2. CART & ORDER LOGIC
+//  2. CART & ORDER LOGIC
 // ======================================================
 let cart = [];
 
@@ -51,6 +51,10 @@ function addToCart(mod) {
         cart.push({ ...mod, quantity: 1 });
     }
     updateCartDisplay();
+    // Tự động mở Modal nếu chưa mở
+    if (!modal.style.display || modal.style.display === 'none') {
+        openModal();
+    }
     alert(`${mod.name} đã được thêm vào giỏ hàng!`);
 }
 
@@ -61,12 +65,12 @@ function updateCartDisplay() {
 
     const summaryEl = document.getElementById('cart-summary');
     if (summaryEl) {
-        summaryEl.innerHTML = `🛒 Giỏ hàng: ${totalItems} sản phẩm | Tổng: ${totalPrice.toLocaleString('vi-VN')} VNĐ`;
+        summaryEl.innerHTML = ` Giỏ hàng: ${totalItems} sản phẩm | Tổng: ${totalPrice.toLocaleString('vi-VN')} VNĐ`;
     }
 }
 
 // ======================================================
-// ⚙️ 3. UI/UX CONTROLS (TAB & MODAL)
+//  3. UI/UX CONTROLS (TAB & MODAL)
 // ======================================================
 
 // --- Tab Payment ---
@@ -89,9 +93,14 @@ const modal = document.getElementById("authModal");
 const modalTitle = document.getElementById("modal-title");
 const authForm = document.getElementById("auth-form");
 const btnToggle = document.getElementById("btn-toggle-auth");
+const authUsernameInput = document.getElementById('auth-username');
+const authPasswordInput = document.getElementById('auth-password');
+const authRoleSelect = document.getElementById('auth-role'); // Đã được thêm
 
 function openModal() {
     modal.style.display = "block";
+    // Đảm bảo luôn hiển thị giao diện đăng nhập khi mở lần đầu
+    updateAuthInterface('login');
 }
 function closeModal() {
     modal.style.display = "none";
@@ -103,63 +112,115 @@ window.onclick = function(event) {
     }
 }
 
+// Hàm cập nhật giao diện Modal (Login vs Register)
+function updateAuthInterface(type) {
+    if (type === 'login') {
+        modalTitle.textContent = "Đăng Nhập Tài Khoản";
+        btnToggle.textContent = "Đăng Ký";
+        document.getElementById('btn-auth').textContent = "Đăng Nhập";
+
+        // Giữ nguyên là trường nhập liệu đơn giản cho User/Admin
+        authUsernameInput.placeholder = "Tên đăng nhập (KNOX666 hoặc user_name)";
+        authPasswordInput.placeholder = "Mật khẩu";
+
+        // Đảm bảo có trường Role để phân biệt
+        if (!authRoleSelect) {
+             console.error("Lỗi: Element #auth-role không được tìm thấy.");
+        }
+    } else { // Register
+        modalTitle.textContent = "Đăng Ký Tài Khoản Mới";
+        btnToggle.textContent = "Quay về Đăng Nhập";
+        document.getElementById('btn-auth').textContent = "Đăng Ký";
+
+        authUsernameInput.placeholder = "Tên mong muốn";
+        authPasswordInput.placeholder = "Mật khẩu bảo mật";
+        // Trong chế độ Register, Role mặc định là User
+        if(authRoleSelect) authRoleSelect.value = 'user';
+    }
+}
+
 // Logic chuyển đổi giữa Đăng nhập và Đăng ký
 btnToggle.addEventListener('click', function() {
     const isLogin = modalTitle.textContent.includes('Đăng Nhập');
     if (isLogin) {
-        // Chuyển sang Đăng Ký
-        modalTitle.textContent = "Đăng Ký Tài Khoản Mới";
-        btnToggle.textContent = "Quay về Đăng Nhập";
-        // (Thêm logic trường cho Đăng Ký nếu cần)
+        updateAuthInterface('register');
     } else {
-        // Quay về Đăng Nhập
-        modalTitle.textContent = "Đăng Nhập Tài Khoản";
-        btnToggle.textContent = "Đăng Ký";
+        updateAuthInterface('login');
     }
 });
 
 // ======================================================
-// 🧩 4. FORM SUBMISSION & BACKEND MOCKUP
+//  4. FORM SUBMISSION & BACKEND MOCKUP
 // ======================================================
 
-// Xử lý Form Đăng Nhập/Đăng Ký
 authForm.addEventListener('submit', function(e) {
     e.preventDefault();
-    const username = document.getElementById('auth-username').value;
-    const password = document.getElementById('auth-password').value;
+    const username = authUsernameInput.value.trim();
+    const password = authPasswordInput.value;
 
-    // --- MOCK API CALL ---
-    console.log(`Đang thực hiện ${modalTitle.textContent.includes('Đăng Nhập') ? 'Đăng Nhập' : 'Đăng Ký'} với: ${username}`);
+    // Lấy Role. Nếu không có select, mặc định là user.
+    let role = 'user';
+    if (authRoleSelect) {
+        role = authRoleSelect.value;
+    }
 
-    if (modalTitle.textContent.includes('Đăng Nhập')) {
-        // Logic kiểm tra đơn giản
-        if (username === "admin" && password === "123456") {
-             alert("Đăng nhập thành công! Chào mừng trở lại KNOX!");
-             closeModal();
+    // --- CẤU HÌNH ADMIN MỚI ---
+    const ADMIN_USERNAME = 'KNOX666';
+    const ADMIN_PASSWORD = 'nguyenmk2';
+    // ---------------------------
+
+    let isLoggedIn = false;
+    let userRole = 'user';
+
+    // 1. Kiểm tra Admin
+    if (role === 'admin' && username === ADMIN_USERNAME && password === ADMIN_PASSWORD) {
+        isLoggedIn = true;
+        userRole = 'admin';
+    }
+    // 2. Kiểm tra User (Giả định bất kỳ cặp nào hợp lệ đều là user)
+    else if (username && password) {
+        isLoggedIn = true;
+        userRole = 'user';
+    }
+    // 3. Lỗi
+    else {
+         alert(`❌ THẤT BẠI: Thông tin đăng nhập không hợp lệ. (Admin: ${ADMIN_USERNAME} / ${ADMIN_PASSWORD})`);
+         return;
+    }
+
+    // --- XỬ LÝ THÀNH CÔNG ---
+    if (isLoggedIn) {
+        alert(`✅ THÀNH CÔNG! Bạn đã đăng nhập với vai trò: ${userRole.toUpperCase()}.`);
+
+        // Tùy chỉnh hành vi dựa trên vai trò
+        if (userRole === 'admin') {
+            console.log("ADMIN ACCESS GRANTED: Mở dashboard quản trị...");
+            // Ở đây bạn sẽ gọi hàm để hiển thị bảng điều khiển Admin
         } else {
-             alert("Tên đăng nhập hoặc mật khẩu sai. Vui lòng thử lại.");
+            console.log("USER ACCESS GRANTED: Bắt đầu mua sắm...");
+            // Ở đây bạn có thể thực hiện logic cho User
         }
-    } else {
-        // Logic đăng ký
-        alert("Đăng ký thành công! Tài khoản đã được tạo tạm thời.");
+
         closeModal();
     }
 });
 
-// Xử lý các Form Thanh Toán
+// Xử lý các Form Thanh Toán (Giữ nguyên)
 document.getElementById('form-card-payment').addEventListener('submit', function(e) {
     e.preventDefault();
     const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+
+    // Kiểm tra quyền admin trước khi thanh toán nếu cần
+    // if (userRole === 'admin') { /* ... */ }
+
     alert(`[THÀNH CÔNG] Thanh toán Card: Đã gửi yêu cầu thanh toán cho tổng số: ${total.toLocaleString('vi-VN')} VNĐ. Chờ xác nhận từ KNOX.`);
     // Reset cart
     cart = [];
     updateCartDisplay();
 });
 
-// ... (Thêm logic tương tự cho form scratch và các form khác)
-
 // ======================================================
-// 🚀 KICKOFF: KHỞI TẠO TẤT CẢ CHỨC NĂNG KHI PAGE LOAD
+//  KICKOFF: KHỞI TẠO TẤT CẢ CHỨC NĂNG KHI PAGE LOAD
 // ======================================================
 document.addEventListener('DOMContentLoaded', () => {
     // 1. Hiển thị sản phẩm
@@ -168,12 +229,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // 2. Cập nhật giỏ hàng ban đầu
     updateCartDisplay();
 
-    // 3. Thêm sự kiện cho các nút quan trọng (Ví dụ: mở modal từ Header)
-    document.querySelector('.main-header').addEventListener('click', function(e) {
-        if (e.target.closest('.logo') || e.target.closest('.main-nav')) {
-            // Giả sử nút Login/Register được đặt ở góc phải header
-            // Nếu bạn có nút Login riêng, hãy kích hoạt nó ở đây.
-            // Ví dụ: document.getElementById('login-btn').addEventListener('click', openModal);
-        }
-    });
+    // Gắn sự kiện mở Modal (Đảm bảo bạn đã có nút với ID này trong HTML)
+    const triggerButton = document.getElementById('btn-login-trigger');
+    if(triggerButton) {
+         triggerButton.addEventListener('click', openModal);
+    }
 });
