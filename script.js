@@ -2,12 +2,12 @@
 // 📚 1. DỮ LIỆU SẢN PHẨM (Database Mockup)
 // ======================================================
 const MOD_DATA = [
-    { id: 1, name: "Cá Vạn Cân", price: 50000, description: "Tăng tỷ lệ rơi vàng và vật phẩm hiếm.", image: "assets/mod_ca_van_can.jpg" },
-    { id: 2, name: "Skill Mạnh Mẽ", price: 75000, description: "Tăng cấp độ kỹ năng tối đa và hiệu quả tấn công.", image: "assets/mod_skill.jpg" },
-    { id: 3, name: "Tăng Cấp Tốc", price: 30000, description: "Tăng tốc độ lên cấp trong game.", image: "assets/mod_lv.jpg" },
-    { id: 4, name: "Bộ Item VIP", price: 120000, description: "Tự động nhận bộ trang bị cao cấp nhất.", image: "assets/mod_item.jpg" },
-    { id: 5, name: "Pet Hỗ Trợ", price: 99000, description: "Thuê pet mạnh giúp farm và chiến đấu.", image: "assets/mod_pet.jpg" },
-    { id: 6, name: "Kim Cương Xanh", price: 250000, description: "Gói nâng cấp toàn diện, bao gồm mọi thứ.", image: "assets/mod_kim_duong.jpg" },
+    { id: 1, name: "Câu Cá Vạn Cân", price: 0, description: "Tăng tỷ lệ rơi vàng và vật phẩm hiếm.", image: "assets/mod_ca_van_can.jpg" },
+    { id: 2, name: "Mod Skill Mạnh Mẽ", price: 75000, description: "Tăng cấp độ kỹ năng tối đa và hiệu quả tấn công.", image: "assets/mod_skill.jpg" },
+    { id: 3, name: "Mod Cấp Độ", price: 30000, description: "Tăng cấp trong game.", image: "assets/mod_lv.jpg" },
+    { id: 4, name: "Mod Item VIP", price: 20000, description: "Tự động nhận bộ trang bị cao cấp nhất.", image: "assets/mod_item.jpg" },
+    { id: 5, name: "Mod Pet Hỗ Trợ", price: 20000, description: "Thuê pet mạnh giúp farm và chiến đấu.", image: "assets/mod_pet.jpg" },
+    { id: 6, name: "Mod Kim Cương Tím", price: 30000, description: "Gói nâng cấp toàn diện, bao gồm mọi thứ.", image: "assets/mod_kim_duong.jpg" },
 ];
 
 // ======================================================
