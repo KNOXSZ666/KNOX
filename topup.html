@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nạp tiền — AntiGravity Pro</title>
+  <meta name="robots" content="noindex, nofollow" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/dashboard.css" />
+</head>
+<body>
+  <div class="bg-atmosphere" aria-hidden="true">
+    <div class="bg-grid"></div>
+    <div class="bg-stars"></div>
+  </div>
+
+  <header class="navbar">
+    <div class="container navbar__inner">
+      <a href="../index.html" class="brand">
+        <span class="brand__mark"><i class="fa-solid fa-meteor"></i></span>
+        <span>
+          AntiGravity <span style="color: var(--neon-cyan)">Pro</span>
+          <span class="brand__sub">MOD GAME &amp; SCRIPT STORE</span>
+        </span>
+      </a>
+      <div class="nav-actions">
+        <a href="dashboard.html" class="btn btn-ghost btn-sm">
+          <i class="fa-solid fa-arrow-left"></i> Quay lại Dashboard
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <div class="dash-layout">
+    <aside class="dash-sidebar" id="dashSidebar">
+      <nav style="display: flex; flex-direction: column; gap: 6px;">
+        <a href="dashboard.html" class="dash-nav-item">
+          <i class="fa-solid fa-gauge"></i> Tổng quan
+        </a>
+        <a href="dashboard.html#orders" class="dash-nav-item">
+          <i class="fa-solid fa-bag-shopping"></i> Lịch sử mua hàng
+        </a>
+        <a href="dashboard.html#topup-history" class="dash-nav-item">
+          <i class="fa-solid fa-money-bill-transfer"></i> Lịch sử nạp tiền
+        </a>
+        <a href="topup.html" class="dash-nav-item is-active">
+          <i class="fa-solid fa-wallet"></i> Nạp tiền
+        </a>
+        <a href="dashboard.html#referral" class="dash-nav-item">
+          <i class="fa-solid fa-user-group"></i> Referral
+        </a>
+        <div class="dash-nav-divider"></div>
+        <a href="#" class="dash-nav-item">
+          <i class="fa-solid fa-gear"></i> Cài đặt tài khoản
+        </a>
+        <a href="../index.html" class="dash-nav-item">
+          <i class="fa-solid fa-house"></i> Về trang chủ
+        </a>
+      </nav>
+
+      <div class="dash-sidebar__user">
+        <div class="dash-avatar">CT</div>
+        <div>
+          <strong style="font-size: 0.86rem;">cauthuvip99</strong>
+          <small>Số dư: 245,000đ</small>
+        </div>
+      </div>
+    </aside>
+
+    <main class="dash-main">
+      <div class="dash-header">
+        <div>
+          <h1>Nạp tiền vào ví</h1>
+          <p>Chọn phương thức nạp phù hợp — số dư cộng tự động sau khi xác nhận.</p>
+        </div>
+      </div>
+
+      <div class="topup-tabs" role="tablist">
+        <button class="topup-tab is-active" data-tab="qr"><i class="fa-solid fa-qrcode"></i> Vietcombank QR</button>
+        <button class="topup-tab" data-tab="card"><i class="fa-solid fa-credit-card"></i> Thẻ cào</button>
+        <button class="topup-tab" data-tab="gcoin"><i class="fa-solid fa-coins"></i> GCoin</button>
+      </div>
+
+      <!-- QR PANEL -->
+      <section class="dash-panel topup-panel" id="panel-qr">
+        <div class="dash-panel__head">
+          <h3>Chuyển khoản qua Vietcombank QR</h3>
+        </div>
+        <div class="qr-box">
+          <div class="qr-placeholder">Mã QR<br />Vietcombank</div>
+          <div style="flex: 1; min-width: 220px;">
+            <div class="bank-info-row">
+              <span>Ngân hàng</span>
+              <strong>Vietcombank</strong>
+            </div>
+            <div class="bank-info-row">
+              <span>Số tài khoản</span>
+              <strong style="font-family: var(--font-mono)">0123456789</strong>
+              <button type="button"><i class="fa-solid fa-copy"></i> Copy</button>
+            </div>
+            <div class="bank-info-row">
+              <span>Chủ tài khoản</span>
+              <strong>NGUYEN VAN A</strong>
+            </div>
+            <div class="bank-info-row">
+              <span>Nội dung CK</span>
+              <strong style="font-family: var(--font-mono)">AGP 00231</strong>
+              <button type="button"><i class="fa-solid fa-copy"></i> Copy</button>
+            </div>
+          </div>
+        </div>
+        <p style="margin-top: 18px; font-size: 0.84rem; color: var(--text-muted);">
+          <i class="fa-solid fa-circle-info"></i> Số dư sẽ được cộng tự động trong 1–2 phút sau khi chuyển khoản đúng nội dung.
+        </p>
+      </section>
+
+      <!-- CARD PANEL -->
+      <section class="dash-panel topup-panel" id="panel-card" style="display: none;">
+        <div class="dash-panel__head">
+          <h3>Nạp bằng thẻ cào điện thoại</h3>
+        </div>
+        <form id="cardForm">
+          <div class="field-group">
+            <label for="cardNetwork">Nhà mạng</label>
+            <div class="field-input">
+              <i class="fa-solid fa-sim-card"></i>
+              <select id="cardNetwork" style="flex:1; background:transparent;">
+                <option>Viettel</option>
+                <option>Mobifone</option>
+                <option>Vinaphone</option>
+              </select>
+            </div>
+          </div>
+          <div class="field-group">
+            <label for="cardSerial">Số seri</label>
+            <div class="field-input">
+              <i class="fa-solid fa-hashtag"></i>
+              <input type="text" id="cardSerial" placeholder="Nhập số seri thẻ cào" />
+            </div>
+          </div>
+          <div class="field-group">
+            <label for="cardPin">Mã thẻ (PIN)</label>
+            <div class="field-input">
+              <i class="fa-solid fa-key"></i>
+              <input type="text" id="cardPin" placeholder="Nhập mã thẻ" />
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary btn-block">
+            <i class="fa-solid fa-paper-plane"></i> Gửi nạp thẻ
+          </button>
+        </form>
+      </section>
+
+      <!-- GCOIN PANEL -->
+      <section class="dash-panel topup-panel" id="panel-gcoin" style="display: none;">
+        <div class="dash-panel__head">
+          <h3>Quy đổi GCoin</h3>
+        </div>
+        <form id="gcoinForm">
+          <div class="field-group">
+            <label for="gcoinAmount">Số lượng GCoin</label>
+            <div class="field-input">
+              <i class="fa-solid fa-coins"></i>
+              <input type="number" id="gcoinAmount" placeholder="VD: 100" min="1" />
+            </div>
+          </div>
+          <div class="field-group">
+            <label for="gcoinAccount">Tài khoản GCoin của bạn</label>
+            <div class="field-input">
+              <i class="fa-solid fa-id-card"></i>
+              <input type="text" id="gcoinAccount" placeholder="Nhập ID tài khoản GCoin" />
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary btn-block">
+            <i class="fa-solid fa-right-left"></i> Quy đổi ngay
+          </button>
+        </form>
+      </section>
+    </main>
+  </div>
+
+  <div class="fab-stack">
+    <a href="https://zalo.me/0000000000" target="_blank" rel="noopener" class="fab fab--zalo" aria-label="Liên hệ qua Zalo">
+      <span class="fab__tooltip">Chat Zalo</span>
+      <i class="fa-solid fa-comment"></i>
+    </a>
+    <a href="https://t.me/antigravitypro" target="_blank" rel="noopener" class="fab fab--telegram" aria-label="Liên hệ qua Telegram">
+      <span class="fab__tooltip">Chat Telegram</span>
+      <i class="fa-brands fa-telegram"></i>
+    </a>
+    <button class="fab fab--chat" id="fabChat" aria-label="Mở khung chat hỗ trợ">
+      <span class="fab__tooltip">Chat hỗ trợ</span>
+      <i class="fa-solid fa-headset"></i>
+    </button>
+  </div>
+
+  <div class="chat-widget" id="chatWidget" role="dialog" aria-label="Khung chat hỗ trợ">
+    <div class="chat-widget__head">
+      <div class="chat-widget__head-info">
+        <span class="chat-status-dot"></span>
+        <strong style="font-size: 0.9rem">Hỗ trợ AntiGravity Pro</strong>
+      </div>
+      <button id="chatClose" aria-label="Đóng chat"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="chat-widget__body" id="chatBody">
+      <div class="chat-msg chat-msg--bot">
+        Xin chào 👋 Mình là trợ lý AntiGravity Pro. Bạn cần hỗ trợ gì hôm nay?
+      </div>
+    </div>
+    <div class="chat-widget__input">
+      <input type="text" id="chatInput" placeholder="Nhập tin nhắn..." aria-label="Nhập tin nhắn" />
+      <button id="chatSend" aria-label="Gửi tin nhắn"><i class="fa-solid fa-paper-plane"></i></button>
+    </div>
+  </div>
+
+  <script src="../js/main.js"></script>
+  <script>
+    document.getElementById("sidebarToggle")?.addEventListener("click", () => {
+      document.getElementById("dashSidebar").classList.toggle("is-open");
+    });
+
+    const tabs = document.querySelectorAll(".topup-tab");
+    const panels = { qr: "panel-qr", card: "panel-card", gcoin: "panel-gcoin" };
+    tabs.forEach((tab) => {
+      tab.addEventListener("click", () => {
+        tabs.forEach((t) => t.classList.remove("is-active"));
+        tab.classList.add("is-active");
+        Object.values(panels).forEach((id) => (document.getElementById(id).style.display = "none"));
+        document.getElementById(panels[tab.dataset.tab]).style.display = "block";
+      });
+    });
+
+    // Mock submit — replace with real API later
+    document.getElementById("cardForm")?.addEventListener("submit", (e) => {
+      e.preventDefault();
+      alert("Đã gửi yêu cầu nạp thẻ. Hệ thống sẽ xử lý trong vài phút.");
+    });
+    document.getElementById("gcoinForm")?.addEventListener("submit", (e) => {
+      e.preventDefault();
+      alert("Đã gửi yêu cầu quy đổi GCoin. Hệ thống sẽ xử lý trong vài phút.");
+    });
+  </script>
+</body>
+</html>
